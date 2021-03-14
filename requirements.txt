@@ -1,0 +1,10 @@
+# This file may be used to create an environment using:
+# $ conda create --name <env> --file <this file>
+# platform: win-64
+astropy=4.2=py39h080aedc_1
+astroquery=0.4.1=pyh9f0ad1d_0
+flask=1.1.2=pyhd3eb1b0_0
+matplotlib=3.3.4=py39haa95532_0
+matplotlib-base=3.3.4=py39h49ac443_0
+numpy=1.19.2=py39h729668d_0
+numpy-base=1.19.2=py39hbd0edd7_0
