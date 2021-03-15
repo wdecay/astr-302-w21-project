@@ -1,7 +1,8 @@
 from flask import Flask, request, render_template, make_response
 from io import BytesIO
-from plotting import generate_plot, close_fig
+from plotting import initialize_matplotlib, generate_plot, close_fig
 
+initialize_matplotlib()
 app = Flask(__name__)
 
 @app.route('/')
@@ -17,7 +18,17 @@ def image():
     bio = BytesIO()
     fig.savefig(bio, format=fmt)
     close_fig(fig)
-    response=make_response(bio.getvalue())
-    response.headers['Content-Type'] = 'image/{}'.format(fmt)
+    r = make_response(bio.getvalue())
+    r.headers['Content-Type'] = 'image/{}'.format(fmt)
+    #r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    #r.headers["Pragma"] = "no-cache"
+    #r.headers["Expires"] = "0"
+    #r.headers['Cache-Control'] = 'public, max-age=0'
+
+    #r.headers['Last-Modified'] = datetime.now()
+    r.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
+    r.headers['Pragma'] = 'no-cache'
+    r.headers['Expires'] = '-1'
+
     bio.close()
-    return response
+    return r

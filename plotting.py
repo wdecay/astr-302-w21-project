@@ -4,12 +4,14 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from solar import SolarSystem
 
-def generate_plot(nmax, data):
+def initialize_matplotlib():
     matplotlib.use('Agg')
-
-    ss = SolarSystem(data)
-    fig, ax = plt.subplots(figsize=(10, 8), num='dark_background')
     plt.style.use('dark_background')
+
+
+def generate_plot(nmax, data):
+    ss = SolarSystem(data)
+    fig, ax = plt.subplots(figsize=(8, 6), num='dark_background')
     ax.set_aspect(1)
     f = 0.1 if nmax >= 7 else 1
     ax.scatter(0, 0, s=f*400, zorder=100, color='tab:orange')
