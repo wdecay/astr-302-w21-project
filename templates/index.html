@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html>
-<body>
-<img src="ss.png?date=2021-01-01&n=5" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script
+       src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel= "stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="row form-horizontal">
+                    <div class="span5 col-md-5" id="sandbox-container"></div>
+                </div>
+            </div> 
+            <div class="col-lg-9">
+                <img id="plot" src="ss.png?date=2021-01-01&n=5" class="img-fluid float-left" />
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#sandbox-container').datepicker().on("changeDate", function(e) {
+                date = [
+                    e.date.getFullYear(),
+                    ('0' + (e.date.getMonth() + 1)).slice(-2),
+                    ('0' + e.date.getDate()).slice(-2)
+                ].join('-'); 
+                $('#plot').attr('src', 'ss.png?date=' + date);
+                console.log(date);
+            });
+        });
+    </script>
 </body>
 </html>
