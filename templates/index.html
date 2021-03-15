@@ -24,13 +24,17 @@
     </div>
     <script>
         $(document).ready(function() {
+            var plot = $('#plot')
+            plot.on("load",  function() {  
+                plot.css({'opacity': 1});
+            });
             $('#sandbox-container').datepicker().on("changeDate", function(e) {
                 date = [
                     e.date.getFullYear(),
                     ('0' + (e.date.getMonth() + 1)).slice(-2),
                     ('0' + e.date.getDate()).slice(-2)
                 ].join('-'); 
-                $('#plot').attr('src', 'ss.png?date=' + date);
+                plot.attr('src', 'ss.png?date=' + date).css({'opacity': 0.7});
                 console.log(date);
             });
         });
