@@ -19,9 +19,8 @@ class SolarSystem:
     def __init__(self, date):
         self.__t0 = Time(date).jd
 
-    def get_planet(self, n):
+    def get_planet(self, n):        
         obj = Horizons(id=n, location="@sun", epochs=self.__t0, id_type='id')
-
         r0 = np.array([obj.vectors()[xn] for xn in ['x', 'y', 'z']])
         v = np.array([obj.vectors()[xn] for xn in ['vx', 'vy', 'vz']])
         r = np.copy(r0)

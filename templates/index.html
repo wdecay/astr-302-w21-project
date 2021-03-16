@@ -5,13 +5,22 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     <body>
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <p class="p-4">
-                    View positions and orbits of Solar System planets on any day
+                <p class="pl-4 pr-4 pt-3">
+                    View positions and orbits of Solar System planets on any day.
+                    <a target="top" href="https://github.com/wdecay/astr-302-w21-project/blob/master/README.org">
+                        More info
+                    </a>
                 </p>
+                <div class="d-flex align-items-center pl-4 pr-4 pt-4 pb-3 wait">
+                    <strong>Loading...</strong>
+                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                </div>
                 <div class="row mx-auto">
                     <div class="span5 col-md-5" id="sandbox-container"></div>
                 </div>
@@ -21,7 +30,7 @@
                             Inner planets
                         </a>
                         <a href="#" class="list-group-item list-group-item-action">
-                            Inner planets + Jupyter
+                            Inner planets+Jupiter
                         </a>
                         <a href="#" class="list-group-item list-group-item-action">
                             All planets
@@ -31,6 +40,7 @@
             </div> 
             <div class="col-lg-9" style="background: white;">
                 <img id="plot" class="img-fluid float-left img-responsive" />
+
             </div>
         </div>
     </div>
@@ -39,17 +49,15 @@
             var plot = $('#plot');
             date = null;
             n = 5;
-            plot.on("load",  function() {
-                plot.css({'opacity': 1});
-            });
-            
+
             function update() {
+                $('.wait').css('visibility', 'visible');
                 plot.attr('src', 'ss.png?date=' + date + '&n=' + n).css({'opacity': 0.7});
             }
 
             $('#sandbox-container').datepicker(
                 {
-                    'todayBtn' : 'linked',
+                    'todayBtn' : false,
                     'todayHighlight': true
                 }
             ).on('changeDate', function(e) {
@@ -83,6 +91,11 @@
                 }
 
                 e.preventDefault();
+            });
+
+            plot.on("load",  function() {
+                plot.css({'opacity': 1});
+                $('.wait').css('visibility', 'hidden');
             });
         });
     </script>
