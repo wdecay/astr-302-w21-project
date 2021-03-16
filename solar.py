@@ -3,17 +3,16 @@ import numba as nb
 from astropy.time import Time
 from astroquery.jplhorizons import Horizons
 
-@nb.jit
+@nb.jit(nopython=True)
 def compute_orbit(r, v, dt, tmax):
-    coords = []
-    t = 0
-    while t < tmax:
+    niter = int(tmax / dt)
+    coords = np.empty((niter, 3))
+    for i in range(0, niter):
         r += v * dt
         acc = -2.959e-4 * r / np.sqrt(np.sum(r**2))**3
         v += acc * dt
-        t += dt
-        coords.append(r.flatten())
-    return np.array(coords)
+        coords[i, :] = r.flatten()
+    return coords
 
 class SolarSystem:
     def __init__(self, date):
