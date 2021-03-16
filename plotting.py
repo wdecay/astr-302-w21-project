@@ -11,19 +11,19 @@ def initialize_matplotlib():
 
 def generate_plot(nmax, data):
     ss = SolarSystem(data)
-    fig, ax = plt.subplots(figsize=(8, 6), num='dark_background')
+    fig, ax = plt.subplots(figsize=(8, 6))
     ax.set_aspect(1)
-    f = 0.1 if nmax >= 7 else 1
-    ax.scatter(0, 0, s=f*400, zorder=100, color='tab:orange')
+    f = 0.05 if nmax >= 7 else 1
+    ax.scatter(0, 0, s=f*200, zorder=100, color='tab:orange')
     colors = ['tab:brown', 'tab:olive', 'tab:blue', 'tab:red',
         'tab:purple', 'tab:pink', 'tab:green', 'tab:cyan']
     names = []
     for n in range(1, nmax):
         r0, coords, name = ss.get_planet(n)
         fp = f if n < 5 else 1
-        ax.plot(coords[:, 0], coords[:, 1], ':', lw=fp*1.2, color='white')
+        ax.plot(coords[:, 0], coords[:, 1], ':', lw=max(fp, 0.2), color='white')
         
-        ax.scatter(r0[0], r0[1], s=f*170, zorder=100, color=colors[n-1], marker='o', label=name)
+        ax.scatter(r0[0], r0[1], s=fp*30, zorder=100, color=colors[n-1], marker='o', label=name)
         names.append(name)
     ax.set_xlabel('AU')
     ax.set_ylabel('AU')

@@ -20,15 +20,8 @@ def image():
     close_fig(fig)
     r = make_response(bio.getvalue())
     r.headers['Content-Type'] = 'image/{}'.format(fmt)
-    #r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    #r.headers["Pragma"] = "no-cache"
-    #r.headers["Expires"] = "0"
-    #r.headers['Cache-Control'] = 'public, max-age=0'
-
-    #r.headers['Last-Modified'] = datetime.now()
     r.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
     r.headers['Pragma'] = 'no-cache'
     r.headers['Expires'] = '-1'
-
     bio.close()
     return r

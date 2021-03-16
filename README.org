@@ -1,0 +1,4 @@
+#+BEGIN_EXAMPLE
+from plotting import generate_plot
+generate_plot(5, '2021-01-10').show()
+#+END_EXAMPLE

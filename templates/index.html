@@ -1,41 +1,88 @@
 <!DOCTYPE html>
 <html>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script
-       src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
-        crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel= "stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <body>
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
-                <div class="row form-horizontal mx-auto">
+                <p class="p-4">
+                    View positions and orbits of Solar System planets on any day
+                </p>
+                <div class="row mx-auto">
                     <div class="span5 col-md-5" id="sandbox-container"></div>
+                </div>
+                <div class="row mx-auto p-4">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active">
+                            Inner planets
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            Inner planets + Jupyter
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            All planets
+                        </a>
+                      </div>
                 </div>
             </div> 
             <div class="col-lg-9" style="background: white;">
-                <img id="plot" src="ss.png?date=2021-01-01&n=5" class="img-fluid float-left img-responsive" />
+                <img id="plot" class="img-fluid float-left img-responsive" />
             </div>
         </div>
     </div>
     <script>
         $(document).ready(function() {
-            var plot = $('#plot')
-            plot.on("load",  function() {  
+            var plot = $('#plot');
+            date = null;
+            n = 5;
+            plot.on("load",  function() {
                 plot.css({'opacity': 1});
             });
-            $('#sandbox-container').datepicker().on("changeDate", function(e) {
-                date = [
+            
+            function update() {
+                plot.attr('src', 'ss.png?date=' + date + '&n=' + n).css({'opacity': 0.7});
+            }
+
+            $('#sandbox-container').datepicker(
+                {
+                    'todayBtn' : 'linked',
+                    'todayHighlight': true
+                }
+            ).on('changeDate', function(e) {
+                newdate = [
                     e.date.getFullYear(),
                     ('0' + (e.date.getMonth() + 1)).slice(-2),
                     ('0' + e.date.getDate()).slice(-2)
-                ].join('-'); 
-                plot.attr('src', 'ss.png?date=' + date).css({'opacity': 0.7});
-                console.log(date);
+                ].join('-');
+                if (date != newdate) {
+                    date = newdate;
+                    update();
+                }
+            }).datepicker("setDate", new Date());
+
+            $('.list-group').children('a').on('click', function(e) {
+                $('.list-group').children('a').removeClass('active');
+                $(e.target).addClass('active');
+                
+                idx = $(e.target).index();
+                if (idx == 0) {
+                    newn = 5
+                } else if (idx == 1) {
+                    newn = 6
+                } else {
+                    newn = 9
+                }
+                
+                if (n != newn) {
+                    n = newn;
+                    update();
+                }
+
+                e.preventDefault();
             });
         });
     </script>
