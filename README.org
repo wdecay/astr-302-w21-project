@@ -2,7 +2,7 @@
 This is a demo of how astronomical results/simulations can be
 published on the web using Python and minimum amount of HTML/JS.
 
-In the project planets’ orbits and positions are visualized in an
+In this project planets’ orbits and positions are visualized in an
 interactive way. The end result is shown in the screenshot below. For
 a limited amount of time the Web site will be available at
 https://astr-302-w21-project.azurewebsites.net/ (Azure hosting
