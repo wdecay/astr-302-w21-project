@@ -11,6 +11,10 @@ acquired via [[https://education.github.com/pack][GitHub Student Developer Pack]
 [[file:screenshot.png]]
 
 * Components
+All direct dependencies are listed in [[file:requirements.txt]].
+
+The main components:
+
 | File                      | Role                          |
 |---------------------------+-------------------------------|
 | [[file:app.py]]               | [[https://flask.palletsprojects.com/en/1.1.x/][Flask]] application main module |
@@ -24,9 +28,6 @@ Deployment to Azure is set up to happen automatically upon a push to
 the master branch of this repo.
 
 * Testing
-The code directly relies upon the packeges listed in
-[[file:requirements.txt]].
-
 To test the code from a Jupyter notebook (not provided) and generate
 the plots, the following code can be used.
 #+BEGIN_EXAMPLE
@@ -36,7 +37,7 @@ from plotting import generate_plot
 generate_plot('2021-01-10', n).show()
 #+END_EXAMPLE
 
-To run a development Flask website run
+To a development Flask website can be spun up via
 #+BEGIN_EXAMPLE
 $ export FLASK_ENV=development # or `set` for MS Windows
 $ flask run
