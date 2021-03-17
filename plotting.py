@@ -19,7 +19,8 @@ def initialize_matplotlib():
 
 def generate_plot(date, n):
     """
-    Generation of a plot with the Sun and <n> planets
+    Generation of a 2D plot with the Sun and <n> planets 
+    (the z coordinate representing the inclination is ignored)
 
     Parameters:
         date: in the `yyyy-mm-dd` format
