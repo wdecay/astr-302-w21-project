@@ -1,4 +1,43 @@
+* Introduction
+This is a demo of how astronomical results/simulations can be
+published on the web using Python and minimum amount of HTML/JS.
+
+In the project planets’ orbits and positions are visualized in an
+interactive way. The end result is shown in the screenshot below. For
+a limited amount of time the Web site will be available at
+https://astr-302-w21-project.azurewebsites.net/ (Azure hosting
+acquired via [[https://education.github.com/pack][GitHub Student Developer Pack]]).
+
+[[file:screenshot.png]]
+
+* Components
+| File                      | Role                          |
+|---------------------------+-------------------------------|
+| [[file:app.py]]               | [[https://flask.palletsprojects.com/en/1.1.x/][Flask]] application main module |
+| [[file:solar.py]]             | Solar system modeling         |
+| [[file:plotting.py]]          | Matplotlib interface          |
+| [[file:templates/index.html]] | HTML/JS template              |
+
+For further details refer to the comments in the Python code.
+
+Deployment to Azure is set up to happen automatically upon a push to
+the master branch of this repo.
+
+* Testing
+The code directly relies upon the packeges listed in
+[[file:requirements.txt]].
+
+To test the code from a Jupyter notebook (not provided) and generate
+the plots, the following code can be used.
 #+BEGIN_EXAMPLE
+%reload_ext autoreload
+%autoreload 2
 from plotting import generate_plot
-generate_plot(5, '2021-01-10').show()
+generate_plot('2021-01-10', n).show()
+#+END_EXAMPLE
+
+To run a development Flask website run
+#+BEGIN_EXAMPLE
+$ export FLASK_ENV=development # or `set` for MS Windows
+$ flask run
 #+END_EXAMPLE

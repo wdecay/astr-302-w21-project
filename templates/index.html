@@ -48,7 +48,7 @@
         $(document).ready(function() {
             var plot = $('#plot');
             date = null;
-            n = 5;
+            n = 4;
 
             function update() {
                 $('.wait').css('visibility', 'visible');
@@ -78,11 +78,11 @@
                 
                 idx = $(e.target).index();
                 if (idx == 0) {
-                    newn = 5
+                    newn = 4
                 } else if (idx == 1) {
-                    newn = 6
+                    newn = 5
                 } else {
-                    newn = 9
+                    newn = 8
                 }
                 
                 if (n != newn) {
