@@ -37,7 +37,7 @@ from plotting import generate_plot
 generate_plot('2021-01-10', 4).show()
 #+END_EXAMPLE
 
-To a development Flask website can be spun up via
+A development Flask website can be spun up via
 #+BEGIN_EXAMPLE
 $ export FLASK_ENV=development # or `set` for MS Windows
 $ flask run
