@@ -25,7 +25,7 @@ The main components:
 For further details refer to the comments in the Python code.
 
 Deployment to Azure is set up to happen automatically upon a push to
-the master branch of this repo.
+the master branch of this repo. (See the *Actions* tab for more info.)
 
 * Testing
 To test the code from a Jupyter notebook (not provided) and generate
