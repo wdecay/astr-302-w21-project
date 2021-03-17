@@ -34,7 +34,7 @@ the plots, the following code can be used.
 %reload_ext autoreload
 %autoreload 2
 from plotting import generate_plot
-generate_plot('2021-01-10', n).show()
+generate_plot('2021-01-10', 4).show()
 #+END_EXAMPLE
 
 To a development Flask website can be spun up via
